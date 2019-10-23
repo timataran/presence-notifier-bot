@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  notifier:
+    build: .
+    env_file:
+      - ./.env
