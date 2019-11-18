@@ -96,6 +96,12 @@ class TestSettings(unittest.TestCase):
             residents
         )
 
+    def test_return_fixed_log_format(self):\
+        self.assertEqual(
+            '%(asctime)s (%(filename)s:%(lineno)d %(threadName)s) %(levelname)s - %(name)s: "%(message)s"',
+            settings.get_log_format()
+        )
+
     @staticmethod
     def _set_valid_environment(**kwargs):
         environment = DEFAULT_ENVIRONMENT.copy()

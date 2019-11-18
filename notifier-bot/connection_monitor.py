@@ -1,8 +1,11 @@
 import time
-import logging
 from threading import Thread
+
 from router.mac_extractor import ActiveMacExtractor
 import settings
+import utils
+
+logger = utils.get_logger('Connection monitor')
 
 
 class ConnectionMonitor:
@@ -16,12 +19,12 @@ class ConnectionMonitor:
         self._execution_thread.start()
 
     def _monitor_connections(self):
-        logging.info('Monitoring started')
+        logger.info('Monitoring started')
         while True:
             try:
                 self.check_connections()
             except Exception as err:
-                logging.error(err)
+                logger.error(err)
             bot_settings = settings.get_bot_settings()
             time.sleep(bot_settings.get('router_polling_period'))
 
