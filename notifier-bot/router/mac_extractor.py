@@ -32,9 +32,9 @@ class ActiveMacExtractor:
     @staticmethod
     def _get_ssh_client():
         client = paramiko.SSHClient()
-        client.set_log_channel('ssh-client')
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
+        client.set_log_channel('ssh-client')
         logging.getLogger('ssh-client').setLevel(logging.WARNING)
 
         return client

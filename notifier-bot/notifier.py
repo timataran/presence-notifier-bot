@@ -3,6 +3,9 @@ import telebot
 
 from connection_monitor import ConnectionMonitor
 import settings
+import utils
+
+logger = utils.get_logger('Notifier starter')
 
 
 class Notifier:
@@ -30,7 +33,7 @@ class Notifier:
             self.bot.send_message(message.from_user.id, "subscription is done")
 
     def _notify_users(self, message):
-        logging.info(f'Message for users {message}')
+        logger.info(f'Message for users {message}')
         for user in self.bot_users:
             self.bot.send_message(user, message)
 
@@ -40,7 +43,6 @@ class Notifier:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
-    logging.info('Start notifier bot')
+    logger.info('Start notifier bot')
     notifier = Notifier()
     notifier.start()

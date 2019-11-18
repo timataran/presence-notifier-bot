@@ -22,6 +22,10 @@ def get_residents():
     return json.loads(data.get('json'))
 
 
+def get_log_format():
+    return '%(asctime)s (%(filename)s:%(lineno)d %(threadName)s) %(levelname)s - %(name)s: "%(message)s"'
+
+
 def _load_from_env(prefix, variable_names, **defaults):
     defaults = {} if defaults is None else defaults
 
