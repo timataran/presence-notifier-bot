@@ -22,7 +22,14 @@ class Notifier:
         })
         monitor = ConnectionMonitor(self._notify_users)
         monitor.start()
-        self.bot.polling(none_stop=True, interval=self.bot_settings.get('polling_interval'))
+        self._start_polling_loop()
+
+    def _start_polling_loop(self):
+        while True:
+            try:
+                self.bot.polling(none_stop=True, interval=self.bot_settings.get('polling_interval'))
+            except Exception as err:
+                logger.error(err)
 
     def _handle_message(self, message):
         if message.text == '/help':
