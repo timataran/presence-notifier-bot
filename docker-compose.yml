@@ -3,5 +3,6 @@ version: "3"
 services:
   notifier:
     build: .
+    restart: always
     env_file:
       - ./.env
