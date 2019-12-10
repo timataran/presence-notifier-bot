@@ -34,7 +34,7 @@ class TestSettings(TestCase):
             {
                 'Alice': False,
                 'Bob': True,
-                'Cate': False
+                'Kate': False
             },
             monitor.status_map
         )
@@ -52,7 +52,7 @@ class TestSettings(TestCase):
         monitor.check_connections()
 
         self.assertListEqual(
-            [call('Bob out'), call('Cate in')],
+            [call('Bob out'), call('Kate in')],
             notificator.notify.mock_calls
         )
 
@@ -75,7 +75,7 @@ class TestSettings(TestCase):
         return {
             'Alice': '111',
             'Bob': '222',
-            'Cate': '444'
+            'Kate': '444'
         }
 
     @staticmethod
@@ -83,7 +83,7 @@ class TestSettings(TestCase):
         return {
             'Alice': True,
             'Bob': True,
-            'Cate': False
+            'Kate': False
         }
 
 
