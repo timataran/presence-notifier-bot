@@ -1,17 +1,14 @@
-import logging
-import telebot
-
 from connection_monitor import ConnectionMonitor
 import settings
-import utils
+from util import factory
 
-logger = utils.get_logger('Notifier starter')
+logger = factory.get_logger('Notifier starter')
 
 
 class Notifier:
     def __init__(self):
         self.bot_settings = settings.get_bot_settings()
-        self.bot = self._build_bot_object(self.bot_settings.get('token'))
+        self.bot = factory.get_telebot()
         self.MAC_MAP = settings.get_residents()
         self.bot_users = []
 
@@ -43,10 +40,6 @@ class Notifier:
         logger.info(f'Message for users {message}')
         for user in self.bot_users:
             self.bot.send_message(user, message)
-
-    @staticmethod
-    def _build_bot_object(token):
-        return telebot.TeleBot(token)
 
 
 if __name__ == '__main__':

@@ -3,9 +3,9 @@ from threading import Thread
 
 from router.mac_extractor import ActiveMacExtractor
 import settings
-import utils
+from util import factory
 
-logger = utils.get_logger('Connection monitor')
+logger = factory.get_logger('Connection monitor')
 
 
 class ConnectionMonitor:
