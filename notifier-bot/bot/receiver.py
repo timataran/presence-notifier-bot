@@ -32,7 +32,7 @@ class Receiver:
             self._event_dispatcher.dispatch(
                 'send_message',
                 user=message.from_user.id,
-                text='Sorry, no help message yet'
+                text='Available commands are /myID and /subscribe'
             )
 
         if message.text == '/subscribe':

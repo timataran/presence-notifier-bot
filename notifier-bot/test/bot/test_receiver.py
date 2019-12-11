@@ -47,7 +47,7 @@ class TestBotSender(TestCase):
         event_dispatcher.dispatch.assert_called_with(
             'send_message',
             user='user_id',
-            text='Sorry, no help message yet'
+            text='Available commands are /myID and /subscribe'
         )
 
     def test_dispatch_events_on_handle_subscribe_message(self, factory_mock, settings_mock):
