@@ -38,3 +38,7 @@ class Receiver:
         if message.text == '/subscribe':
             self._event_dispatcher.dispatch('subscribe_user', user=message.from_user.id)
             self._event_dispatcher.dispatch('send_message', user=message.from_user.id, text='subscription is done')
+
+        if message.text == '/myID':
+            user_id = message.from_user.id
+            self._event_dispatcher.dispatch('send_message', user=user_id, text=f'{user_id}')

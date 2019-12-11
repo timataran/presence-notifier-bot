@@ -66,6 +66,18 @@ class TestBotSender(TestCase):
             user='user_id'
         )
 
+    def test_dispatch_event_on_handle_my_id(self, factory_mock, settings_mock):
+        event_dispatcher = Mock()
+        receiver = Receiver(event_dispatcher)
+
+        receiver.handle_message(self._get_message_mock(text='/myID', sender='user_id'))
+
+        event_dispatcher.dispatch.assert_any_call(
+            'send_message',
+            user='user_id',
+            text='user_id'
+        )
+
     @staticmethod
     def _get_message_mock(**kwargs):
         message = Mock()
