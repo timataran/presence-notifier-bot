@@ -1,6 +1,6 @@
 import unittest
 import os
-import settings
+from util import settings
 
 DEFAULT_ENVIRONMENT = {
     'ROUTER_IP': '192.168.0.1',
@@ -94,6 +94,19 @@ class TestSettings(unittest.TestCase):
                 'Bob': 'F6:E5:D4:C3:B2:A1'
             },
             residents
+        )
+
+    def test_return_allowed_users(self):
+        self._set_valid_environment(ALLOWED_USERS='{"12345": "Alice", "56789": "Bob"}')
+
+        allowed_users = settings.get_allowed_users()
+
+        self.assertDictEqual(
+            {
+                '12345': 'Alice',
+                '56789': 'Bob'
+            },
+            allowed_users
         )
 
     def test_return_fixed_log_format(self):\

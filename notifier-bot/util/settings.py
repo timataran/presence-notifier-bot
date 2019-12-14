@@ -8,6 +8,8 @@ BOT_DEFAULTS = {'polling_interval': 3, 'router_polling_period': 3}
 
 RESIDENTS = ['json']
 
+ALLOWED = ['users']
+
 
 def get_router_settings():
     return _load_from_env('router', ROUTER_SETTINGS)
@@ -20,6 +22,11 @@ def get_bot_settings():
 def get_residents():
     data = _load_from_env('residents', RESIDENTS)
     return json.loads(data.get('json'))
+
+
+def get_allowed_users():
+    data = _load_from_env('allowed', ALLOWED)
+    return json.loads(data.get('users'))
 
 
 def get_log_format():

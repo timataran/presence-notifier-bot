@@ -1,7 +1,6 @@
 import time
 
-import settings
-from util import factory
+from util import factory, settings
 
 logger = factory.get_logger('Bot receiver')
 
