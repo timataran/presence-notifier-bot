@@ -27,17 +27,13 @@ class Receiver:
                 time.sleep(1)
 
     def handle_message(self, message):
+        user_id = message.from_user.id
+
         if message.text == '/help':
-            self._event_dispatcher.dispatch(
-                'send_message',
-                user=message.from_user.id,
-                text='Available commands are /myID and /subscribe'
-            )
+            self._event_dispatcher.dispatch('command_help', user=user_id)
 
         if message.text == '/subscribe':
-            self._event_dispatcher.dispatch('subscribe_user', user=message.from_user.id)
-            self._event_dispatcher.dispatch('send_message', user=message.from_user.id, text='subscription is done')
+            self._event_dispatcher.dispatch('command_subscribe', user=user_id)
 
         if message.text == '/myID':
-            user_id = message.from_user.id
-            self._event_dispatcher.dispatch('send_message', user=user_id, text=f'{user_id}')
+            self._event_dispatcher.dispatch('command_my_id', user=user_id)
