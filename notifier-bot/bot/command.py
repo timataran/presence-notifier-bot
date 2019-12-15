@@ -16,7 +16,7 @@ class CommandBase:
             self._execute_restricted(user)
 
     def _is_user_allowed(self, user):
-        return user in self._allowed_users.keys()
+        return str(user) in self._allowed_users.keys()
 
     def _execute_allowed(self, user):
         pass

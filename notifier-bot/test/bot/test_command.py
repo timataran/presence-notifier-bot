@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 
 from bot.command import Help, Subscribe, MyId
 
-ALLOWED_USERS = {'allowed': 'Alice'}
+ALLOWED_USERS = {'111111': 'Alice'}
 
 
 @patch('bot.command.settings', **{'get_allowed_users.return_value': ALLOWED_USERS})
@@ -21,11 +21,11 @@ class TestCommands(TestCase):
 
         command = Help(dispatcher)
 
-        command.execute(user='allowed')
+        command.execute(user=111111)
 
         dispatcher.dispatch.assert_called_with(
             'send_message',
-            user='allowed',
+            user=111111,
             text='Available commands are /myID and /subscribe'
         )
 
@@ -54,16 +54,16 @@ class TestCommands(TestCase):
 
         command = Subscribe(dispatcher)
 
-        command.execute(user='allowed')
+        command.execute(user=111111)
 
         dispatcher.dispatch.assert_any_call(
             'send_message',
-            user='allowed',
+            user=111111,
             text='subscription is done'
         )
         dispatcher.dispatch.assert_any_call(
             'subscribe_user',
-            user='allowed'
+            user=111111
         )
 
     def test_show_help_on_restricted_user_subscribe(self, settings_mock):
@@ -91,12 +91,12 @@ class TestCommands(TestCase):
 
         command = MyId(dispatcher)
 
-        command.execute(user='allowed')
+        command.execute(user=111111)
 
         dispatcher.dispatch.assert_called_with(
             'send_message',
-            user='allowed',
-            text='allowed'
+            user=111111,
+            text='111111'
         )
 
     def test_show_id_for_restricted_user(self, settings_mock):
