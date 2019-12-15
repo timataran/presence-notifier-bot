@@ -1,7 +1,7 @@
 import logging
 import telebot
 
-import settings
+from util import settings
 
 
 def get_logger(name):

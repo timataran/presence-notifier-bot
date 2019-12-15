@@ -1,5 +1,5 @@
 import paramiko
-import settings
+from util import settings
 import logging
 
 

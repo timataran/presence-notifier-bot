@@ -44,11 +44,7 @@ class TestBotSender(TestCase):
 
         receiver.handle_message(self._get_message_mock(text='/help', sender='user_id'))
 
-        event_dispatcher.dispatch.assert_called_with(
-            'send_message',
-            user='user_id',
-            text='Sorry, no help message yet'
-        )
+        event_dispatcher.dispatch.assert_called_with('command_help', user='user_id')
 
     def test_dispatch_events_on_handle_subscribe_message(self, factory_mock, settings_mock):
         event_dispatcher = Mock()
@@ -56,15 +52,15 @@ class TestBotSender(TestCase):
 
         receiver.handle_message(self._get_message_mock(text='/subscribe', sender='user_id'))
 
-        event_dispatcher.dispatch.assert_any_call(
-            'send_message',
-            user='user_id',
-            text='subscription is done'
-        )
-        event_dispatcher.dispatch.assert_any_call(
-            'subscribe_user',
-            user='user_id'
-        )
+        event_dispatcher.dispatch.assert_called_with('command_subscribe', user='user_id')
+
+    def test_dispatch_event_on_handle_my_id(self, factory_mock, settings_mock):
+        event_dispatcher = Mock()
+        receiver = Receiver(event_dispatcher)
+
+        receiver.handle_message(self._get_message_mock(text='/myID', sender='user_id'))
+
+        event_dispatcher.dispatch.assert_any_call('command_my_id', user='user_id')
 
     @staticmethod
     def _get_message_mock(**kwargs):

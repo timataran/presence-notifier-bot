@@ -2,8 +2,7 @@ import time
 from threading import Thread
 
 from router.mac_extractor import ActiveMacExtractor
-import settings
-from util import factory
+from util import factory, settings
 
 logger = factory.get_logger('Connection monitor')
 

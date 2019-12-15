@@ -3,7 +3,7 @@ import threading
 
 class EventDispatcher:
     def __init__(self):
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()
         self._listeners = {}
 
     def add_listener(self, event_name, handler):

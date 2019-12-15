@@ -1,7 +1,6 @@
 import time
 
-import settings
-from util import factory
+from util import factory, settings
 
 logger = factory.get_logger('Bot receiver')
 
@@ -28,13 +27,13 @@ class Receiver:
                 time.sleep(1)
 
     def handle_message(self, message):
+        user_id = message.from_user.id
+
         if message.text == '/help':
-            self._event_dispatcher.dispatch(
-                'send_message',
-                user=message.from_user.id,
-                text='Sorry, no help message yet'
-            )
+            self._event_dispatcher.dispatch('command_help', user=user_id)
 
         if message.text == '/subscribe':
-            self._event_dispatcher.dispatch('subscribe_user', user=message.from_user.id)
-            self._event_dispatcher.dispatch('send_message', user=message.from_user.id, text='subscription is done')
+            self._event_dispatcher.dispatch('command_subscribe', user=user_id)
+
+        if message.text == '/myID':
+            self._event_dispatcher.dispatch('command_my_id', user=user_id)
