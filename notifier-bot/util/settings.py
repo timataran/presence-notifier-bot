@@ -38,7 +38,7 @@ def _load_from_env(prefix, variable_names, **defaults):
 
     settings = {v: os.getenv(f'{prefix}_{v}'.upper()) for v in variable_names}
 
-    for field, value in settings.items():
+    for field in settings.keys():
         if settings.get(field) is None:
             default_value = defaults.get(field)
             if default_value is not None:
