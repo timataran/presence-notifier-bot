@@ -109,7 +109,7 @@ class TestSettings(unittest.TestCase):
             allowed_users
         )
 
-    def test_return_fixed_log_format(self):\
+    def test_return_fixed_log_format(self):
         self.assertEqual(
             '%(asctime)s (%(filename)s:%(lineno)d %(threadName)s) %(levelname)s - %(name)s: "%(message)s"',
             settings.get_log_format()
