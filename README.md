@@ -1,1 +1,1 @@
-# presence-notifiyer-bot
+# presence-notifier-bot
